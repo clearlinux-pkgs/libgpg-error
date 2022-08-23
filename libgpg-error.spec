@@ -7,7 +7,7 @@
 %define keepstatic 1
 Name     : libgpg-error
 Version  : 1.45
-Release  : 62
+Release  : 63
 URL      : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.45.tar.gz
 Source0  : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.45.tar.gz
 Source1  : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.45.tar.gz.sig
@@ -179,7 +179,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656130083
+export SOURCE_DATE_EPOCH=1661264340
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -222,11 +222,11 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1656130083
+export SOURCE_DATE_EPOCH=1661264340
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libgpg-error
-cp %{_builddir}/libgpg-error-1.45/COPYING %{buildroot}/usr/share/package-licenses/libgpg-error/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
-cp %{_builddir}/libgpg-error-1.45/COPYING.LIB %{buildroot}/usr/share/package-licenses/libgpg-error/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/libgpg-error-%{version}/COPYING %{buildroot}/usr/share/package-licenses/libgpg-error/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
+cp %{_builddir}/libgpg-error-%{version}/COPYING.LIB %{buildroot}/usr/share/package-licenses/libgpg-error/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -268,6 +268,7 @@ popd
 %defattr(-,root,root,-)
 /usr/include/gpg-error.h
 /usr/include/gpgrt.h
+/usr/lib64/glibc-hwcaps/x86-64-v3/libgpg-error.so
 /usr/lib64/libgpg-error.so
 /usr/lib64/pkgconfig/gpg-error.pc
 /usr/share/aclocal/*.m4
@@ -295,7 +296,6 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgpg-error.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libgpg-error.so.0
 /usr/lib64/glibc-hwcaps/x86-64-v3/libgpg-error.so.0.33.0
 /usr/lib64/libgpg-error.so.0
@@ -317,6 +317,7 @@ popd
 
 %files staticdev
 %defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/libgpg-error.a
 /usr/lib64/libgpg-error.a
 
 %files staticdev32

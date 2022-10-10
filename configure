@@ -1,1 +1,2 @@
 --enable-static
+--enable-install-gpg-error-config

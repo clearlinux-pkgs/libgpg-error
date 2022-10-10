@@ -7,7 +7,7 @@
 %define keepstatic 1
 Name     : libgpg-error
 Version  : 1.46
-Release  : 65
+Release  : 66
 URL      : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.46.tar.gz
 Source0  : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.46.tar.gz
 Source1  : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.46.tar.gz.sig
@@ -21,6 +21,7 @@ Requires: libgpg-error-info = %{version}-%{release}
 Requires: libgpg-error-lib = %{version}-%{release}
 Requires: libgpg-error-license = %{version}-%{release}
 Requires: libgpg-error-locales = %{version}-%{release}
+Requires: libgpg-error-man = %{version}-%{release}
 BuildRequires : gcc-dev32
 BuildRequires : gcc-libgcc32
 BuildRequires : gcc-libstdc++32
@@ -137,6 +138,14 @@ Group: Default
 locales components for the libgpg-error package.
 
 
+%package man
+Summary: man components for the libgpg-error package.
+Group: Default
+
+%description man
+man components for the libgpg-error package.
+
+
 %package staticdev
 Summary: staticdev components for the libgpg-error package.
 Group: Default
@@ -170,7 +179,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1665177816
+export SOURCE_DATE_EPOCH=1665418851
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -179,7 +188,8 @@ export CFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sect
 export FCFLAGS="$FFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition "
 export FFLAGS="$FFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition "
-%configure  --enable-static
+%configure  --enable-static \
+--enable-install-gpg-error-config
 make  %{?_smp_mflags}
 
 pushd ../build32/
@@ -188,7 +198,8 @@ export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
 export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
 export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
 export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
-%configure  --enable-static   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+%configure  --enable-static \
+--enable-install-gpg-error-config   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make  %{?_smp_mflags}
 popd
 unset PKG_CONFIG_PATH
@@ -198,7 +209,8 @@ export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
 export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
 export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
-%configure  --enable-static
+%configure  --enable-static \
+--enable-install-gpg-error-config
 make  %{?_smp_mflags}
 popd
 %check
@@ -213,7 +225,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1665177816
+export SOURCE_DATE_EPOCH=1665418851
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libgpg-error
 cp %{_builddir}/libgpg-error-%{version}/COPYING %{buildroot}/usr/share/package-licenses/libgpg-error/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
@@ -246,6 +258,7 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/gpg-error
+/usr/bin/gpg-error-config
 /usr/bin/gpgrt-config
 /usr/bin/yat2m
 /usr/share/clear/optimized-elf/bin*
@@ -300,6 +313,10 @@ popd
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/libgpg-error/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
 /usr/share/package-licenses/libgpg-error/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/gpg-error-config.1
 
 %files staticdev
 %defattr(-,root,root,-)

@@ -8,7 +8,7 @@
 %define keepstatic 1
 Name     : libgpg-error
 Version  : 1.47
-Release  : 68
+Release  : 69
 URL      : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.47.tar.gz
 Source0  : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.47.tar.gz
 Source1  : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.47.tar.gz.sig
@@ -17,7 +17,6 @@ Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0+ LGPL-2.1
 Requires: libgpg-error-bin = %{version}-%{release}
 Requires: libgpg-error-data = %{version}-%{release}
-Requires: libgpg-error-filemap = %{version}-%{release}
 Requires: libgpg-error-info = %{version}-%{release}
 Requires: libgpg-error-lib = %{version}-%{release}
 Requires: libgpg-error-license = %{version}-%{release}
@@ -43,7 +42,6 @@ Summary: bin components for the libgpg-error package.
 Group: Binaries
 Requires: libgpg-error-data = %{version}-%{release}
 Requires: libgpg-error-license = %{version}-%{release}
-Requires: libgpg-error-filemap = %{version}-%{release}
 
 %description bin
 bin components for the libgpg-error package.
@@ -90,14 +88,6 @@ Group: Default
 extras components for the libgpg-error package.
 
 
-%package filemap
-Summary: filemap components for the libgpg-error package.
-Group: Default
-
-%description filemap
-filemap components for the libgpg-error package.
-
-
 %package info
 Summary: info components for the libgpg-error package.
 Group: Default
@@ -111,7 +101,6 @@ Summary: lib components for the libgpg-error package.
 Group: Libraries
 Requires: libgpg-error-data = %{version}-%{release}
 Requires: libgpg-error-license = %{version}-%{release}
-Requires: libgpg-error-filemap = %{version}-%{release}
 
 %description lib
 lib components for the libgpg-error package.
@@ -184,15 +173,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680796723
+export SOURCE_DATE_EPOCH=1683043546
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Os -fdata-sections -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -Os -fdata-sections -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -Os -fdata-sections -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -Os -fdata-sections -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -Os -fdata-sections -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -Os -fdata-sections -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -ffunction-sections -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %configure  --enable-static \
 --enable-install-gpg-error-config
 make  %{?_smp_mflags}
@@ -230,7 +219,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1680796723
+export SOURCE_DATE_EPOCH=1683043546
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libgpg-error
 cp %{_builddir}/libgpg-error-%{version}/COPYING %{buildroot}/usr/share/package-licenses/libgpg-error/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1 || :
@@ -262,11 +251,12 @@ popd
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/gpg-error
+/V3/usr/bin/yat2m
 /usr/bin/gpg-error
 /usr/bin/gpg-error-config
 /usr/bin/gpgrt-config
 /usr/bin/yat2m
-/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -274,9 +264,9 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libgpg-error.so
 /usr/include/gpg-error.h
 /usr/include/gpgrt.h
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgpg-error.so
 /usr/lib64/libgpg-error.so
 /usr/lib64/pkgconfig/gpg-error.pc
 /usr/share/aclocal/*.m4
@@ -294,18 +284,14 @@ popd
 /usr/share/common-lisp/source/gpg-error/gpg-error.asd
 /usr/share/common-lisp/source/gpg-error/gpg-error.lisp
 
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-libgpg-error
-
 %files info
 %defattr(0644,root,root,0755)
 /usr/share/info/gpgrt.info
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgpg-error.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgpg-error.so.0.34.0
+/V3/usr/lib64/libgpg-error.so.0
+/V3/usr/lib64/libgpg-error.so.0.34.0
 /usr/lib64/libgpg-error.so.0
 /usr/lib64/libgpg-error.so.0.34.0
 
@@ -326,7 +312,6 @@ popd
 
 %files staticdev
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libgpg-error.a
 /usr/lib64/libgpg-error.a
 
 %files staticdev32

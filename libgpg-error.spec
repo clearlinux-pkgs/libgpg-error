@@ -8,7 +8,7 @@
 %define keepstatic 1
 Name     : libgpg-error
 Version  : 1.47
-Release  : 69
+Release  : 70
 URL      : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.47.tar.gz
 Source0  : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.47.tar.gz
 Source1  : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.47.tar.gz.sig
@@ -173,7 +173,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683043546
+export SOURCE_DATE_EPOCH=1685638089
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -219,7 +219,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1683043546
+export SOURCE_DATE_EPOCH=1685638089
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libgpg-error
 cp %{_builddir}/libgpg-error-%{version}/COPYING %{buildroot}/usr/share/package-licenses/libgpg-error/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1 || :
@@ -264,7 +264,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libgpg-error.so
 /usr/include/gpg-error.h
 /usr/include/gpgrt.h
 /usr/lib64/libgpg-error.so
@@ -290,7 +289,6 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libgpg-error.so.0
 /V3/usr/lib64/libgpg-error.so.0.34.0
 /usr/lib64/libgpg-error.so.0
 /usr/lib64/libgpg-error.so.0.34.0

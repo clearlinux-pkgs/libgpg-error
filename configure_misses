@@ -1,14 +1,15 @@
 Configure miss: 32-bit host C ABI
 Configure miss: 32-bit host C ABI
+Configure miss: CFLocaleCopyPreferredLanguages
+Configure miss: CFLocaleCopyPreferredLanguages
+Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: broken alias attribute
 Configure miss: broken alias attribute
 Configure miss: broken alias attribute
-Configure miss: direct.h presence
-Configure miss: direct.h presence
-Configure miss: direct.h presence
-Configure miss: direct.h usability
-Configure miss: direct.h usability
-Configure miss: direct.h usability
+Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: i686-generic-linux-gnu-file
 Configure miss: i686-generic-linux-gnu-windres
 Configure miss: strlwr
 Configure miss: strlwr
@@ -31,3 +32,5 @@ Configure miss: whether to enable log_clock
 Configure miss: windres
 Configure miss: windres
 Configure miss: windres
+Configure miss: x86_64-generic-linux-gnu-file
+Configure miss: x86_64-generic-linux-gnu-file

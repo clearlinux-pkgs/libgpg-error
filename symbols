@@ -150,6 +150,7 @@ libgpg-error.so.0:gpgrt_snprintf@@GPG_ERROR_1.0
 libgpg-error.so.0:gpgrt_spawn_actions_new@@GPG_ERROR_1.0
 libgpg-error.so.0:gpgrt_spawn_actions_release@@GPG_ERROR_1.0
 libgpg-error.so.0:gpgrt_spawn_actions_set_atfork@@GPG_ERROR_1.0
+libgpg-error.so.0:gpgrt_spawn_actions_set_env_rev@@GPG_ERROR_1.0
 libgpg-error.so.0:gpgrt_spawn_actions_set_environ@@GPG_ERROR_1.0
 libgpg-error.so.0:gpgrt_spawn_actions_set_inherit_fds@@GPG_ERROR_1.0
 libgpg-error.so.0:gpgrt_spawn_actions_set_redirect@@GPG_ERROR_1.0

@@ -9,11 +9,11 @@
 #
 %define keepstatic 1
 Name     : libgpg-error
-Version  : 1.53
-Release  : 76
-URL      : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.53.tar.gz
-Source0  : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.53.tar.gz
-Source1  : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.53.tar.gz.sig
+Version  : 1.54
+Release  : 77
+URL      : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.54.tar.gz
+Source0  : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.54.tar.gz
+Source1  : https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.54.tar.gz.sig
 Source2  : 528897B826403ADA.pkey
 Summary  : libgpg-error
 Group    : Development/Tools
@@ -169,13 +169,13 @@ chmod 700 .gnupg
 gpg --homedir .gnupg --import %{SOURCE2}
 gpg --homedir .gnupg --status-fd 1 --verify %{SOURCE1} %{SOURCE0} > gpg.status
 grep -E '^\[GNUPG:\] (GOODSIG|EXPKEYSIG) 528897B826403ADA' gpg.status
-%setup -q -n libgpg-error-1.53
-cd %{_builddir}/libgpg-error-1.53
+%setup -q -n libgpg-error-1.54
+cd %{_builddir}/libgpg-error-1.54
 pushd ..
-cp -a libgpg-error-1.53 build32
+cp -a libgpg-error-1.54 build32
 popd
 pushd ..
-cp -a libgpg-error-1.53 buildavx2
+cp -a libgpg-error-1.54 buildavx2
 popd
 
 %build
@@ -183,7 +183,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1744204749
+export SOURCE_DATE_EPOCH=1744897552
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -251,7 +251,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1744204749
+export SOURCE_DATE_EPOCH=1744897552
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libgpg-error
 cp %{_builddir}/libgpg-error-%{version}/COPYING %{buildroot}/usr/share/package-licenses/libgpg-error/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1 || :
@@ -324,14 +324,14 @@ GOAMD64=v2
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libgpg-error.so.0.39.1
+/V3/usr/lib64/libgpg-error.so.0.39.2
 /usr/lib64/libgpg-error.so.0
-/usr/lib64/libgpg-error.so.0.39.1
+/usr/lib64/libgpg-error.so.0.39.2
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libgpg-error.so.0
-/usr/lib32/libgpg-error.so.0.39.1
+/usr/lib32/libgpg-error.so.0.39.2
 
 %files license
 %defattr(0644,root,root,0755)
